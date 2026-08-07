@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador Ganador Tinka</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b132b; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+        .container { text-align: center; background: #1c2541; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); width: 100%; max-width: 450px; border-top: 5px solid #ff5722; }
+        h1 { color: #ff5722; font-size: 2rem; margin-top: 0; text-transform: uppercase; letter-spacing: 1px; }
+        p { color: #5bc0be; font-size: 1rem; margin-bottom: 25px; }
+        .balls-container { display: flex; justify-content: space-between; margin-bottom: 30px; min-height: 65px; align-items: center; padding: 0 10px; }
+        .ball { width: 50px; height: 50px; background: radial-gradient(circle at 30% 30%, #ff9800, #e65100); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; color: white; box-shadow: 0 5px 15px rgba(230,81,0,0.4); transform: scale(0); animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes popIn { to { transform: scale(1); } }
+        button { background-color: #00b4d8; color: white; border: none; padding: 15px 30px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(0,180,216,0.4); width: 100%; text-transform: uppercase; }
+        button:active { transform: scale(0.98); box-shadow: 0 2px 5px rgba(0,180,216,0.2); }
+        .footer { margin-top: 25px; font-size: 0.8rem; color: #6c757d; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Tinka Suerte 🇵🇪</h1>
+        <p>Genera tu jugada ganadora (6 números del 1 al 50)</p>
+        
+        <div class="balls-container" id="ballsBox">
+            <!-- Aquí aparecerán las bolillas -->
+        </div>
+
+        <button onclick="generateTinkaNumbers()">¡Generar Jugada!</button>
+        
+        <div class="footer">¡Buena suerte! Juega con responsabilidad.</div>
+    </div>
+
+    <script>
+        function generateTinkaNumbers() {
+            const container = document.getElementById('ballsBox');
+            container.innerHTML = ''; // Limpiar jugada anterior
+            
+            let numbers = [];
+            
+            // Generar 6 números únicos entre 1 y 50
+            while (numbers.length < 6) {
+                let randomNum = Math.floor(Math.random() * 50) + 1;
+                if (!numbers.includes(randomNum)) {
+                    numbers.push(randomNum);
+                }
+            }
+            
+            // Ordenar los números de menor a mayor (como en el sorteo real)
+            numbers.sort((a, b) => a - b);
+            
+            // Crear las bolillas con efecto de retraso de tiempo
+            numbers.forEach((num, index) => {
+                setTimeout(() => {
+                    const ball = document.createElement('div');
+                    ball.className = 'ball';
+                    ball.innerText = num;
+                    container.appendChild(ball);
+                }, index * 150); // Aparecen una por una
+            });
+        }
+    </script>
+</body>
+</html>
