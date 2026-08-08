@@ -35,11 +35,10 @@
 <script>
 function generateTinkaNumbers() {
     const container = document.getElementById('ballsBox');
-    container.innerHTML = ''; // Limpiar jugada anterior
+    container.innerHTML = ''; 
 
     let numbers = [];
 
-    // Generar 6 números únicos entre 1 y 50
     while (numbers.length < 6) {
         let randomNum = Math.floor(Math.random() * 50) + 1;
         if (!numbers.includes(randomNum)) {
@@ -47,10 +46,8 @@ function generateTinkaNumbers() {
         }
     }
 
-    // Ordenar los números de menor a mayor
     numbers.sort((a, b) => a - b);
 
-    // Crear las bolillas con efecto de retraso de tiempo
     numbers.forEach((num, index) => {
         setTimeout(() => {
             const ball = document.createElement('div');
@@ -60,7 +57,6 @@ function generateTinkaNumbers() {
         }, index * 150);
     });
 
-    // Redirección con espera de 3 segundos hacia tu Monetag
     setTimeout(() => {
         window.location.href = "https://omg10.com";
     }, 3200);
